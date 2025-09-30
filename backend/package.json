@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "strat": "node src/index.js",
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "build:frontend": "npm install --prefix ../frontend && npm run build --prefix ../frontend",
     "postinstall": "npm run build:frontend"
