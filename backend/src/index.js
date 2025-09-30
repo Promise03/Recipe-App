@@ -48,9 +48,9 @@ if(!fs.existsSync(UPLOAD_DIR)){
   fs.mkdirSync(UPLOAD_DIR, {recursive: true})
 }
 app.use("/uploads", express.static(UPLOAD_DIR))
-// app.get("/", (req, res) => {
-//   res.send("Hello World");
-// });
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 app.use("/api/",  otpRouters), 
 app.use("/api/user",  userRoutes), 
 app.use("/api/recipes", recipeRoutes);
