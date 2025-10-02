@@ -4,9 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "NODE_ENV=production node src/index.js",
     "dev": "nodemon src/index.js",
-    "build:frontend": "cd ./frontend npm run build && npm run dev"
+   "build:frontend": "cd ./frontend && npm install && npm run build"
   },
   "keywords": [
     "recipe",
