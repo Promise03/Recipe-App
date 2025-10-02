@@ -5,9 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "build:frontend": "npm install --prefix ../frontend && npm run build --prefix ../frontend",
-    "postinstall": "npm run build:frontend"
+    "dev": "nodemon src/index.js"
   },
   "keywords": [
     "recipe",

@@ -55,7 +55,7 @@ app.use("/api/",  otpRouters),
 app.use("/api/user",  userRoutes), 
 app.use("/api/recipes", recipeRoutes);
 app.use("/api/analytis", analytisRoutes );
-//directory for client build files 
+// directory for client build files 
 const clientBuildPath = path.join(__dirname, "..", "..", "frontend", "build");
 const clientDistPath = path.join(__dirname, "..", "..", "frontend", "dist");
 
