@@ -48,8 +48,8 @@ if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 app.use("/uploads", express.static(UPLOAD_DIR));
 
 // Serve frontend (React or Vite)
-const clientBuildPath = path.join(__dirname, "..", "..", "frontend", "build"); // CRA
-const clientDistPath = path.join(__dirname, "..", "..", "frontend", "dist");   // Vite
+const clientBuildPath = path.join(__dirname, "..", "frontend", "build"); // CRA
+const clientDistPath = path.join(__dirname, "..", "frontend", "dist");   // Vite
 
 if (process.env.NODE_ENV === "production") {
   if (fs.existsSync(clientBuildPath)) {
