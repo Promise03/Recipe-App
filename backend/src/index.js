@@ -36,40 +36,34 @@ if (process.env.NODE_ENV === "development") {
   );
 }
 
-// Routes
+// API routes
 app.use("/api/otp", otpRouters);
 app.use("/api/user", userRoutes);
 app.use("/api/recipes", recipeRoutes);
 app.use("/api/analytis", analytisRoutes);
 
-// File uploads dir
+// Uploads dir
 const UPLOAD_DIR = process.env.UPLOAD_DIR || path.join(__dirname, "uploads");
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 app.use("/uploads", express.static(UPLOAD_DIR));
 
-// Serve frontend (React or Vite)
-const clientBuildPath = path.join(__dirname, "..", "frontend", "build"); // CRA
-const clientDistPath = path.join(__dirname, "..", "frontend", "dist");   // Vite
+// ✅ Serve Vite frontend in production
+const clientDistPath = path.join(__dirname, "..", "..", "frontend", "dist");
 
 if (process.env.NODE_ENV === "production") {
-  if (fs.existsSync(clientBuildPath)) {
-    app.use(express.static(clientBuildPath));
-    app.get("*", (req, res) =>
-      res.sendFile(path.join(clientBuildPath, "index.html"))
-    );
-  } else if (fs.existsSync(clientDistPath)) {
+  if (fs.existsSync(clientDistPath)) {
     app.use(express.static(clientDistPath));
     app.get("*", (req, res) =>
       res.sendFile(path.join(clientDistPath, "index.html"))
     );
   } else {
-    console.log("⚠️ No frontend build found.");
+    console.log("⚠️ Frontend dist not found. Did you run vite build?");
   }
 } else {
   app.get("/", (req, res) => res.send("✅ API running in development"));
 }
 
-// Database + Server start
+// DB + Server
 dbConnection()
   .then(() => {
     console.log("✅ Database connected successfully!");
